@@ -14,6 +14,12 @@ ARG PASSWORD=""
 # Add dos2unix to fix CRLF issues
 RUN apk add --no-cache gcompat tini git unzip wget curl dos2unix
 
+
+# 设置时区为 Asia/Shanghai
+ENV TZ=Asia/Shanghai
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+
+
 # Create app directory
 WORKDIR ${APP_HOME}
 
